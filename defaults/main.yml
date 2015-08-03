@@ -12,6 +12,7 @@ alert_throttles:
       - name: key
         value: "%{host}%{message}"
 clear_logstash_config: false
+config_hosts_file: false  #defines if /etc/hosts should include ELK hosts...if DNS not configured...Vagrant testing.
 config_logstash: true
 email_notifications: 'notifications@{{ pri_domain_name }}'  #defines email address for logstash to send alerts to
 enable_dns_blacklist_filtering: false  #defines if DNS blacklist filtering should be done...uncomment 361_filters_powerdns_blacklists under logstash_configs if set to true
