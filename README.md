@@ -34,8 +34,12 @@ alert_throttles:
       - name: key
         value: "%{host}%{message}"
 clear_logstash_config: false
+config_hosts_file: false  #defines if /etc/hosts should include ELK hosts...if DNS not configured...Vagrant testing.
 config_logstash: true
-enable_dns_blacklist_filtering: false
+email_notifications: 'notifications@{{ pri_domain_name }}'  #defines email address for logstash to send alerts to
+enable_dns_blacklist_filtering: false  #defines if DNS blacklist filtering should be done...uncomment 361_filters_powerdns_blacklists under logstash_configs if set to true
+logstash_alerts_domain: '{{ pri_domain_name }}'  #defines domain name to configure email alerts...generally should be the same as pri_domain_name
+logstash_alerts_email: 'logstash_alerts@{{ pri_domain_name }}'  #defines email account to send alerts from
 logstash_blacklists_dir: /etc/logstash/blacklists
 logstash_configs:
   - 000_inputs
@@ -59,7 +63,7 @@ logstash_configs:
   - 341_filters_rundeck
   - 350_filters_zfs
   - 360_filters_powerdns
-  - 361_filters_powerdns_blacklists
+#  - 361_filters_powerdns_blacklists
   - 370_filters_vmware_nsx
   - 900_filters
   - 910_filters_source_host_ip
@@ -142,6 +146,8 @@ powerdns_blacklists:
 #  - malware
   - social_networking
   - spyware
+pri_domain_name: example.org  #defines primary domain name...define here or globally in group_vars/all
+smtp_server: 'smtp.{{ pri_domain_name }}'  #defines smtp server to send emails through...define here or globally in group_vars/all
 ````
 
 Dependencies
