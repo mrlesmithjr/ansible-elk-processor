@@ -13,7 +13,7 @@ input {
 {% endif %}
 {% if logstash_inputs is defined %}
 {%   for item in logstash_inputs %}
-{%     for host in groups['elk-p-broker-nodes'] %}
+{%     for host in groups['elk-broker-nodes'] %}
 {%       if item.type == "redis" %}
 input {
   redis {
