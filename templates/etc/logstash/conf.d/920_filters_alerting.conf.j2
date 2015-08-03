@@ -2,7 +2,6 @@
 #
 # This is where alerts and specific notification outputs will be defined
 #
-{% if logstash_enable_alerts is defined and logstash_enable_alerts %}
 filter {
   if "Hadoop" in [tags] and [syslog_facility] == "kernel" {
     if "critical target error" in [message] {
@@ -48,4 +47,3 @@ output {
     }
   }
 }
-{% endif %}
