@@ -33,12 +33,12 @@ filter {
 output {
   if "HardDrive-Failure" in [tags] and "throttled" not in [tags] {
     email {
-      from => "{{logstash_alerts_email}}"
+      from => "{{ logstash_alerts_email }}"
       subject => "HardDrive Failure Detected on Hadoop node %{host} (%{failed_drive_device})"
-      to => "{{email_notifications}}"
+      to => "{{ email_notifications }}"
       options => [
-        "smtpIporHost", "{{smtp_server}}",
-        "domain", "{{logstash_alerts_domain}}",
+        "smtpIporHost", "{{ smtp_server }}",
+        "domain", "{{ logstash_alerts_domain }}",
         "starttls", "false",
         "authenticationType", ""
       ]
