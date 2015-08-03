@@ -124,3 +124,4 @@ powerdns_blacklists:
   - social_networking
   - spyware
 pri_domain_name: example.org  #defines primary domain name...define here or globally in group_vars/all
+smtp_server: 'smtp.{{ pri_domain_name }}'  #defines smtp server to send emails through...define here or globally in group_vars/all
