@@ -13,8 +13,8 @@ input {
 {% endif %}
 {% if logstash_inputs is defined %}
 {%   for item in logstash_inputs %}
-{%     for host in groups['elk-broker-nodes'] %}
-{%       if item.type == "redis" %}
+{%     if item.type == "redis" %}
+{%       for host in groups['elk-broker-nodes'] %}
 input {
   redis {
     host => "{{ host }}"
@@ -28,7 +28,17 @@ input {
 {%         endif %}
   }
 }
+{%       endfor %}
+{%     endif %}
+{%     if item.type == "rabbitmq" %}
+input {
+  rabbitmq {
+    host => "{{ item.host }}"
+{%       if item.exchange is defined %}
+    exchange => "{{ item.exchange }}"
 {%       endif %}
-{%     endfor %}
+  }
+}
+{%     endif %}
 {%   endfor %}
 {% endif %}
