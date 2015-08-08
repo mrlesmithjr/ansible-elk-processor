@@ -41,6 +41,7 @@ enable_dns_blacklist_filtering: false  #defines if DNS blacklist filtering shoul
 logstash_alerts_domain: '{{ pri_domain_name }}'  #defines domain name to configure email alerts...generally should be the same as pri_domain_name
 logstash_alerts_email: 'logstash_alerts@{{ pri_domain_name }}'  #defines email account to send alerts from
 logstash_blacklists_dir: /etc/logstash/blacklists
+logstash_config_dir: /etc/logstash/conf.d
 logstash_configs:
   - 000_inputs
   - 001_filters
@@ -144,6 +145,7 @@ logstash_post_tagging:
   - type: vCenter
     tags:
       - VMware
+logstash_workers: []  #defines the number of worker processes for logstash to spawn...default is 1...good rule 1/cpu...define here or in group_vars/group
 powerdns_blacklists:
 #  - malware
   - social_networking

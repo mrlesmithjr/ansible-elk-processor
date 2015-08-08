@@ -12,7 +12,9 @@
 
 # Arguments to pass to logstash agent
 #LS_OPTS=""
-LS_OPTS="-w {{logstash_workers}}"
+{% if logstash_workers is defined %}
+LS_OPTS="-w {{ logstash_workers }}"
+{% endif %}
 
 # Arguments to pass to java
 #LS_HEAP_SIZE="500m"
@@ -36,3 +38,8 @@ LS_OPTS="-w {{logstash_workers}}"
 
 # Nice level
 #LS_NICE=19
+
+# If this is set to 1, then when `stop` is called, if the process has
+# not exited within a reasonable time, SIGKILL will be sent next.
+# The default behavior is to simply log a message "program stop failed; still running"
+KILL_ON_STOP_TIMEOUT=0

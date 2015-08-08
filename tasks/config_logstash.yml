@@ -11,6 +11,11 @@
   file: path={{ logstash_config_dir }}/logstash.conf state=absent
   notify: restart logstash
 
+- name: config_logstash | configuring logstash workers
+  template: src=etc/default/logstash.j2 dest=/etc/default/logstash owner=root group=root mode=0664
+  notify: restart logstash
+  when: logstash_workers is defined
+
 - name: config_logstash | configuring logstash
   template: src=etc/logstash/conf.d/{{ item }}.conf.j2 dest={{ logstash_config_dir }}/{{ item }}.conf owner=logstash group=logstash mode=0644
   notify: restart logstash
