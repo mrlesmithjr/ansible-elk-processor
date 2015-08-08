@@ -145,7 +145,7 @@ logstash_post_tagging:
   - type: vCenter
     tags:
       - VMware
-logstash_workers: []  #defines the number of worker processes for logstash to spawn/cpu...default is 1/cpu...define here or in group_vars/group
+#logstash_workers: 1  #defines the number of worker processes for logstash to spawn/cpu...default is 1/cpu...define here or in group_vars/group
 powerdns_blacklists:
 #  - malware
   - social_networking
