@@ -8,8 +8,8 @@ filter {
         grok {
           break_on_match => false
           match => [
-            "message", "invalid user %{DATA:UserName} from %{IP:src_ip}",
-            "message", "for %{DATA:UserName} from %{IP:src_ip}"
+            "message", "invalid user %{DATA:UserName} from %{IP:src_ip}"
+#            "message", "for %{DATA:UserName} from %{IP:src_ip}"
           ]
         }
         mutate {
