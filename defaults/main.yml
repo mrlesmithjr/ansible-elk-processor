@@ -29,6 +29,7 @@ logstash_configs:
   - 220_filters_haproxy
   - 230_filters_keepalived
   - 240_filters_ssh
+  - 241_filters_dhcp
   - 250_filters_snort
   - 260_filters_citrix_netscaler
   - 270_filters_apache
