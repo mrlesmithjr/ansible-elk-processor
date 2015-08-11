@@ -14,7 +14,6 @@ input {
 {% if logstash_inputs is defined %}
 {%   for item in logstash_inputs %}
 {%     if item.type == "redis" %}
-#{%       for host in groups['elk-broker-nodes'] %}
 input {
   redis {
     host => "{{ item.host }}"
@@ -28,7 +27,6 @@ input {
 {%         endif %}
   }
 }
-#{%       endfor %}
 {%     endif %}
 {%     if item.type == "rabbitmq" %}
 input {
