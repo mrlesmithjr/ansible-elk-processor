@@ -88,6 +88,7 @@ logstash_grok_patterns:
 logstash_inputs:
   - type: redis
     batch_count: 1000
+    host: '{{ logstash_server_fqdn }}'
     threads: 2
 logstash_log_dir: /var/log/logstash
 logstash_outputs:
@@ -152,8 +153,7 @@ powerdns_blacklists:
   - social_networking
   - spyware
 pri_domain_name: example.org  #defines primary domain name...define here or globally in group_vars/all
-smtp_server: 'smtp.{{ pri_domain_name }}'  #defines smtp server to send emails through...define here or globally in group_vars/all
-````
+smtp_server: 'smtp.{{ pri_domain_name }}'  #defines smtp server to send emails through...define here or globally in ````
 
 Dependencies
 ------------

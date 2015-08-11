@@ -66,6 +66,7 @@ logstash_grok_patterns:
 logstash_inputs:
   - type: redis
     batch_count: 1000
+    host: '{{ logstash_server_fqdn }}'
     threads: 2
 logstash_log_dir: /var/log/logstash
 logstash_outputs:

@@ -14,10 +14,10 @@ input {
 {% if logstash_inputs is defined %}
 {%   for item in logstash_inputs %}
 {%     if item.type == "redis" %}
-{%       for host in groups['elk-broker-nodes'] %}
+#{%       for host in groups['elk-broker-nodes'] %}
 input {
   redis {
-    host => "{{ host }}"
+    host => "{{ item.host }}"
     data_type => "list"
 {%         if item.batch_count is defined %}
     batch_count => "{{ item.batch_count }}"
@@ -28,7 +28,7 @@ input {
 {%         endif %}
   }
 }
-{%       endfor %}
+#{%       endfor %}
 {%     endif %}
 {%     if item.type == "rabbitmq" %}
 input {
