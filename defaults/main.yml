@@ -24,6 +24,7 @@ logstash_configs:
   - 000_inputs
   - 001_filters
   - 100_filters_cisco_asa
+  - 101_filters_monit
   - 200_filters_syslog
   - 210_filters_iptables
   - 220_filters_haproxy
