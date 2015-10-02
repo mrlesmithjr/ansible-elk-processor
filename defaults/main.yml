@@ -52,6 +52,8 @@ logstash_configs:
   - 990_filters_cleanup
   - 991_filters_tagging
   - 999_outputs
+logstash_configs_remove:  #define configs that were in logstash_configs but no longer needed below to remove them nodes.
+  - 101_filters_monit  #renamed to 201_filters_monit
 logstash_file_inputs:
   - path: /var/log/nginx/access.log
     type: nginx-access
