@@ -7,8 +7,15 @@ filter {
       if "usage" in [message] {
         grok {
           match => [
-            "message", "'%{IPORHOST}' %{DATA:monit_resource} of %{BASE10NUM:monit_resource_usage_percentage}% %{WORD} %{DATA}.\[%{DATA}>%{BASE10NUM:monit_resource_limit_percentage}%]",
-            "message", "'%{IPORHOST}' '%{IPORHOST}' %{DATA:monit_resource} check %{WORD:monit_check_status}.\[current %{DATA}=%{BASE10NUM:monit_current_resource_usage_percentage}%]"
+            "message", "'%{IPORHOST}' %{DATA:monit_resource} of %{BASE10NUM:monit_resource_usage_percentage:float}% %{WORD} %{DATA}.\[%{DATA}>%{BASE10NUM:monit_resource_limit_percentage:float}%]",
+            "message", "'%{IPORHOST}' '%{IPORHOST}' %{DATA:monit_resource} check %{WORD:monit_check_status}.\[current %{DATA}=%{BASE10NUM:monit_current_resource_usage_percentage:float}%]"
+          ]
+        }
+      }
+      if "loadavg" in [message] and "check" not in [message] {
+        grok {
+          match => [
+            "message", "'%{IPORHOST}' %{DATA:monit_resource} of %{BASE10NUM:monit_resource_usage:float} %{WORD} %{DATA}.\[%{DATA}>%{BASE10NUM:monit_resource_limit:float}]"
           ]
         }
       }
