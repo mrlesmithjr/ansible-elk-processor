@@ -27,7 +27,7 @@ filter {
         rename => [ "http_status_code", "response" ]
         rename => [ "http_request", "request" ]
         rename => [ "client_ip", "src_ip" ]
-        replace => [ "message", "%{haproxy_message}" ]
+#        replace => [ "message", "%{haproxy_message}" ]
       }
     }
   }
