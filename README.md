@@ -22,6 +22,8 @@ Role Variables
 --------------
 
 ````
+---
+# defaults file for ansible-elk-processor
 alert_throttles:
   - tag: HardDrive-Failure
     settings:
@@ -45,8 +47,10 @@ logstash_config_dir: /etc/logstash/conf.d
 logstash_configs:
   - 000_inputs
   - 001_filters
+  - 002_metrics  #comment out if metrics for logstash processing are not required..good for keeping track of throughput
   - 100_filters_cisco_asa
   - 200_filters_syslog
+  - 201_filters_monit
   - 210_filters_iptables
   - 220_filters_haproxy
   - 230_filters_keepalived
@@ -73,6 +77,8 @@ logstash_configs:
   - 990_filters_cleanup
   - 991_filters_tagging
   - 999_outputs
+logstash_configs_remove:  #define configs that were in logstash_configs but no longer needed below to remove them nodes.
+  - 101_filters_monit  #renamed to 201_filters_monit
 logstash_file_inputs:
   - path: /var/log/nginx/access.log
     type: nginx-access
@@ -153,7 +159,8 @@ powerdns_blacklists:
   - social_networking
   - spyware
 pri_domain_name: example.org  #defines primary domain name...define here or globally in group_vars/all
-smtp_server: 'smtp.{{ pri_domain_name }}'  #defines smtp server to send emails through...define here or globally in ````
+smtp_server: 'smtp.{{ pri_domain_name }}'  #defines smtp server to send emails through...define here or globally in group_vars/all
+````
 
 Dependencies
 ------------
