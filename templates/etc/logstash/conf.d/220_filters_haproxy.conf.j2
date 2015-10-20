@@ -9,8 +9,9 @@ filter {
       }
       grok {
         match => [
-          "message", "%{HAPROXYHTTP}",
-          "message", "%{HAPROXYTCP}",
+#          "message", "%{HAPROXYHTTP}",
+#          "message", "%{HAPROXYTCP}",
+          "message", "%{IPORHOST:syslog_server}:%{INT:client_port} \[%{HAPROXYDATE:accept_date}\] %{NOTSPACE:frontend_name} %{NOTSPACE:backend_name}/%{NOTSPACE:server_name} %{INT:time_queue}/%{INT:time_backend_connect}/%{NOTSPACE:time_duration} %{NOTSPACE:bytes_read} %{NOTSPACE:termination_state} %{INT:actconn}/%{INT:feconn}/%{INT:beconn}/%{INT:srvconn}/%{NOTSPACE:retries} %{INT:srv_queue}/%{INT:backend_queue}",
           "message", "%{SYSLOGTIMESTAMP:syslog_timestamp} %{IPORHOST:syslog_server} %{SYSLOGPROG}: %{GREEDYDATA:haproxy_message}"
         ]
         add_tag => [ "HAProxy" ]
