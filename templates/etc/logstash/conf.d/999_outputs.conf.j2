@@ -40,6 +40,21 @@ output {
   }
 }
 {% endfor %}
+{% if enable_logstash_slack_output is defined and enable_logstash_slack_output %}
+{%   if logstash_slack_ouput_tags is defined and logstash_slack_output_tags != None %}
+# Slack outputs based on tags.
+{%     for item in logstash_slack_output_tags %}
+output {
+  if "{{ item }}" in [tags] {
+    slack {
+      url => {{ logstash_slack_api_webhook_url }}
+      channel => {{ logstash_slack_channel }}
+    }
+  }
+}
+{%     endfor %}
+{%   endif %}
+{% endif %}
 
 #output {
 #  if "drop" not in [tags] {

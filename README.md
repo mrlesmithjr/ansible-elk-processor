@@ -40,6 +40,7 @@ config_hosts_file: false  #defines if /etc/hosts should include ELK hosts...if D
 config_logstash: true
 email_notifications: 'notifications@{{ pri_domain_name }}'  #defines email address for logstash to send alerts to
 enable_dns_blacklist_filtering: false  #defines if DNS blacklist filtering should be done...uncomment 361_filters_powerdns_blacklists under logstash_configs if set to true
+enable_logstash_slack_output: false  #defines if logstash should be configured for sending alerts to slack
 logstash_alerts_domain: '{{ pri_domain_name }}'  #defines domain name to configure email alerts...generally should be the same as pri_domain_name
 logstash_alerts_email: 'logstash_alerts@{{ pri_domain_name }}'  #defines email account to send alerts from
 logstash_blacklists_dir: /etc/logstash/blacklists
@@ -153,6 +154,10 @@ logstash_post_tagging:
   - type: vCenter
     tags:
       - VMware
+logstash_slack_api_webhook_url: [] #define the slack api webhook api url assigned when adding an incoming slack webhook.
+logstash_slack_channel: logstash  #defines the slack channel where logstash alerts should be sent to. Ensure enable_logstash_slack_output is set to true if slack output is required.
+logstash_slack_output_tags:  #define specific tags to look for to alert on and send to slack
+  - SSH_Failed_Login
 #logstash_workers: 1  #defines the number of worker processes for logstash to spawn/cpu...default is 1/cpu...define here or in group_vars/group
 powerdns_blacklists:
 #  - malware
