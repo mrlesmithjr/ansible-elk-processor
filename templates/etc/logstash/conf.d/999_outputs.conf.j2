@@ -47,8 +47,8 @@ output {
 output {
   if "{{ item }}" in [tags] {
     slack {
-      url => {{ logstash_slack_api_webhook_url }}
-      channel => {{ logstash_slack_channel }}
+      url => "{{ logstash_slack_api_webhook_url }}"
+      channel => "{{ logstash_slack_channel }}"
     }
   }
 }
