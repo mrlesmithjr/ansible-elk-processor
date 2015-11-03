@@ -28,6 +28,7 @@ filter {
         rename => [ "http_request", "request" ]
         rename => [ "client_ip", "src_ip" ]
 #        replace => [ "message", "%{haproxy_message}" ]
+        replace => [ "host", "%{received_from}"]
       }
     }
   }
