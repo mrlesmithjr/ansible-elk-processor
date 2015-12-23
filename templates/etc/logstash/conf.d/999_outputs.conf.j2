@@ -59,18 +59,6 @@ output {
 {% endif %}
 
 #output {
-#  if "drop" not in [tags] {
-#    elasticsearch {
-#      cluster => "{{ es_cluster_name }}"
-#      flush_size => "5000"
-#      manage_template => true
-#      template_overwrite => true
-#      template => "/opt/logstash/lib/logstash/outputs/elasticsearch/elasticsearch-template.json"
-#      workers => "3"
-#    }
-#  }
-#}
-#output {
 #       if [type] == "apache" and "404" in [response]  {
 #               email {
 #                       from => "{{ logstash_alerts_email }}"
