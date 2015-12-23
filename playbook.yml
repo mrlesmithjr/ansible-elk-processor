@@ -10,7 +10,7 @@
         threads: 2
     - logstash_outputs:
       - output: elasticsearch
-        host: elasticsearch
+        hosts: elasticsearch
     #    hosts:
         protocol: http  #node, transport or http....http is the only protocol supported in 2.x+
         flush_size: 5000
