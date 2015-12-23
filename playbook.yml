@@ -1,0 +1,22 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    - logstash_inputs:
+      - type: redis
+        batch_count: 1000
+        host: redis
+        threads: 2
+    - logstash_outputs:
+      - output: elasticsearch
+        host: elasticsearch
+    #    hosts:
+        protocol: http  #node, transport or http....http is the only protocol supported in 2.x+
+        flush_size: 5000
+        workers: 2
+    - logstash_server_fqdn: redis
+    - skip_validation: true
+  roles:
+    - role: ansible-logstash
+    - role: ansible-elk-processor
+  tasks:
