@@ -2,7 +2,6 @@
 - hosts: all
   sudo: true
   vars:
-    - es_cluster_name: ansible-test #defines es_cluster_name if not specified in group_vars
     - logstash_inputs:
       - type: redis
         batch_count: 1000
@@ -11,8 +10,6 @@
     - logstash_outputs:
       - output: elasticsearch
         hosts: elasticsearch
-    #    hosts:
-        protocol: http  #node, transport or http....http is the only protocol supported in 2.x+
         flush_size: 5000
         workers: 2
     - logstash_server_fqdn: redis

@@ -20,14 +20,6 @@ output {
       hosts => "{{ item.hosts }}"
 {%   endif %}
 {%   if item.output == "elasticsearch" %}
-{%     if item.protocol is defined %}
-{%       if item.protocol == "node" %}
-      cluster => "{{ es_cluster_name }}"
-{%       endif %}
-{%       if item.protocol == "http" %}
-      protocol => "http"
-{%       endif %}
-{%     endif %}
 {%     if item.flush_size is defined %}
       flush_size => "{{ item.flush_size }}"
 {%     endif %}
