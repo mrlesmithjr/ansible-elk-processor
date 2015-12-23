@@ -100,9 +100,7 @@ logstash_inputs:
 logstash_log_dir: /var/log/logstash
 logstash_outputs:
   - output: elasticsearch
-    host: 'logstash.{{ pri_domain_name }}'
-#    hosts:
-    protocol: http  #node, transport or http....http is the only protocol supported in 2.x+
+    hosts: 'logstash.{{ pri_domain_name }}:9200'
     flush_size: 5000
     workers: 2
 #  - output: gelf

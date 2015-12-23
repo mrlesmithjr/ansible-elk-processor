@@ -76,7 +76,7 @@ logstash_inputs:
 logstash_log_dir: /var/log/logstash
 logstash_outputs:
   - output: elasticsearch
-    hosts: 'logstash.{{ pri_domain_name }}'
+    hosts: 'logstash.{{ pri_domain_name }}:9200'
     flush_size: 5000
     workers: 2
 #  - output: gelf

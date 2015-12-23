@@ -9,7 +9,7 @@
         threads: 2
     - logstash_outputs:
       - output: elasticsearch
-        hosts: elasticsearch
+        hosts: 'elasticsearch:9200'
         flush_size: 5000
         workers: 2
     - logstash_server_fqdn: redis
