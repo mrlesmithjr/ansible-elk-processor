@@ -2,6 +2,7 @@
 - hosts: all
   sudo: true
   vars:
+    - es_cluster_name: ansible-test #defines es_cluster_name if not specified in group_vars
     - logstash_inputs:
       - type: redis
         batch_count: 1000
