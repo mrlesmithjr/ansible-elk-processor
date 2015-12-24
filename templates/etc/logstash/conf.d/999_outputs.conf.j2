@@ -23,9 +23,11 @@ output {
 {%     if item.flush_size is defined %}
       flush_size => "{{ item.flush_size }}"
 {%     endif %}
+{%     if logstash_custom_template is defined and logstash_custom_template %}
       manage_template => true
-      template_overwrite => true
       template => "/opt/logstash/lib/logstash/outputs/elasticsearch/elasticsearch-template.json"
+{%     endif %}
+      template_overwrite => true
 {%     if item.workers is defined %}
       workers => "{{ item.workers }}"
 {%     endif %}

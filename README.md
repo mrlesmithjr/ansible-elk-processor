@@ -80,6 +80,7 @@ logstash_configs:
 logstash_configs_remove:  #define configs that were in logstash_configs but no longer needed below to remove them nodes.
   - 002_metrics  #comment out if metrics for logstash processing are not required..good for keeping track of throughput...removed because of incompatabilities w/ES 2.x
   - 101_filters_monit  #renamed to 201_filters_monit
+logstash_custom_template: false  #defines if a custom elasticsearch template for logstash is desired.
 logstash_file_inputs:
   - path: /var/log/nginx/access.log
     type: nginx-access
