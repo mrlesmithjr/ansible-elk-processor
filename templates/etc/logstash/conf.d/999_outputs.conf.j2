@@ -33,7 +33,6 @@ output {
 {%     endif %}
       manage_template => true
       template_overwrite => true
-      template => "/opt/logstash/lib/logstash/outputs/elasticsearch/elasticsearch-template.json"
 {%     if item.workers is defined %}
       workers => "{{ item.workers }}"
 {%     endif %}
