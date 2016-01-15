@@ -80,7 +80,7 @@
     state: directory
     owner: logstash
     group: logstash
-    mode: 0644
+    mode: 0775
   when: not ls_es_patterns_dir.stat.exists
 
 - name: config_logstash | copying GROK patterns
