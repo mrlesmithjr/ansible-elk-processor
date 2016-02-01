@@ -77,7 +77,7 @@ logstash_inputs:
 logstash_log_dir: /var/log/logstash
 logstash_outputs:
   - output: elasticsearch
-    host: 'logstash.{{ pri_domain_name }}'
+    host: '{{ logstash_server_fqdn }}'
 #    hosts:
     protocol: http  #node, transport or http....http is the only protocol supported in 2.x+
     flush_size: 5000
@@ -134,7 +134,7 @@ logstash_post_tagging:
   - type: vCenter
     tags:
       - VMware
-logstash_server_fqdn: 'logstash.{{ pri_domain_name }}'  #defines FQDN of logstash vip or etc.
+logstash_server_fqdn: 'logstash.{{ pri_domain_name }}'  #defines logstash server...should be vip fqdn for elk-haproxy-nodes...define here or globally in group_vars/elk-nodes
 logstash_slack_api_webhook_url: [] #define the slack api webhook api url assigned when adding an incoming slack webhook.
 logstash_slack_channel: logstash  #defines the slack channel where logstash alerts should be sent to. Ensure enable_logstash_slack_output is set to true if slack output is required.
 logstash_slack_output_tags:  #define specific tags to look for to alert on and send to slack
