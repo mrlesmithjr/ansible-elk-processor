@@ -20,18 +20,13 @@ output {
       hosts => "{{ item.hosts }}"
 {%   endif %}
 {%   if item.output == "elasticsearch" %}
-{%     if item.protocol is defined %}
-{%       if item.protocol == "node" %}
-      cluster => "{{ es_cluster_name }}"
-{%       endif %}
-{%       if item.protocol == "http" %}
-      protocol => "http"
-{%       endif %}
-{%     endif %}
 {%     if item.flush_size is defined %}
       flush_size => "{{ item.flush_size }}"
 {%     endif %}
+{%     if logstash_custom_template is defined and logstash_custom_template %}
       manage_template => true
+      template => "/opt/logstash/lib/logstash/outputs/elasticsearch/elasticsearch-template.json"
+{%     endif %}
       template_overwrite => true
 {%     if item.workers is defined %}
       workers => "{{ item.workers }}"
@@ -65,18 +60,6 @@ output {
 {%   endif %}
 {% endif %}
 
-#output {
-#  if "drop" not in [tags] {
-#    elasticsearch {
-#      cluster => "{{ es_cluster_name }}"
-#      flush_size => "5000"
-#      manage_template => true
-#      template_overwrite => true
-#      template => "/opt/logstash/lib/logstash/outputs/elasticsearch/elasticsearch-template.json"
-#      workers => "3"
-#    }
-#  }
-#}
 #output {
 #       if [type] == "apache" and "404" in [response]  {
 #               email {

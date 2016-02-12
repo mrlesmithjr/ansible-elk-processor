@@ -81,6 +81,7 @@ logstash_configs:
 logstash_configs_remove:  #define configs that were in logstash_configs but no longer needed below to remove them nodes.
   - 002_metrics  #comment out if metrics for logstash processing are not required..good for keeping track of throughput...removed because of incompatabilities w/ES 2.x
   - 101_filters_monit  #renamed to 201_filters_monit
+logstash_custom_template: false  #defines if a custom elasticsearch template for logstash is desired.
 logstash_file_inputs:
   - path: /var/log/nginx/access.log
     type: nginx-access
@@ -101,9 +102,7 @@ logstash_inputs:
 logstash_log_dir: /var/log/logstash
 logstash_outputs:
   - output: elasticsearch
-    host: 'logstash.{{ pri_domain_name }}'
-#    hosts:
-    protocol: http  #node, transport or http....http is the only protocol supported in 2.x+
+    hosts: 'logstash.{{ pri_domain_name }}:9200'
     flush_size: 5000
     workers: 2
 #  - output: gelf
