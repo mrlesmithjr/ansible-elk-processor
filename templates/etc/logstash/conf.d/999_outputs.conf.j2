@@ -17,7 +17,7 @@ output {
       host => "{{ item.host }}"
 {%   endif %}
 {%   if item.hosts is defined %}
-      hosts => "{{ item.hosts }}"
+      hosts => ["{{ item.hosts }}"]
 {%   endif %}
 {%   if item.output == "elasticsearch" %}
 {%     if item.flush_size is defined %}
