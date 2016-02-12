@@ -50,7 +50,8 @@
 - name: config_logstash | checking to ensure /opt/logstash/lib/logstash/outputs/elasticsearch folder exists
   stat:
     path: /opt/logstash/lib/logstash/outputs/elasticsearch
-  register: ls_es_output_dir and (logstash_custom_template is defined and logstash_custom_template)
+  register: ls_es_output_dir
+  when: (logstash_custom_template is defined and logstash_custom_template)
 
 - name: config_logstash | creating /opt/logstash/lib/logstash/outputs/elasticsearch folder if it is missing
   file:
