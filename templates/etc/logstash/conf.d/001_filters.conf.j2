@@ -1,5 +1,3 @@
-# {{ ansible_managed }}
-#
 {% if logstash_pre_tagging is defined %}
 filter {
 {%   for item in logstash_pre_tagging %}
