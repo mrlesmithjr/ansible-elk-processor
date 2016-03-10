@@ -1,5 +1,3 @@
-# {{ ansible_managed }}
-#
 # Setting up HAProxy parsing
 filter {
   if "syslog" in [tags] {
@@ -11,7 +9,7 @@ filter {
         match => [
 #          "message", "%{HAPROXYHTTP}",
 #          "message", "%{HAPROXYTCP}",
-          "message", "%{IPORHOST:syslog_server}:%{INT:client_port} \[%{HAPROXYDATE:accept_date}\] %{NOTSPACE:frontend_name} %{NOTSPACE:backend_name}/%{NOTSPACE:server_name} %{INT:time_queue}/%{INT:time_backend_connect}/%{NOTSPACE:time_duration} %{NOTSPACE:bytes_read} %{NOTSPACE:termination_state} %{INT:actconn}/%{INT:feconn}/%{INT:beconn}/%{INT:srvconn}/%{NOTSPACE:retries} %{INT:srv_queue}/%{INT:backend_queue}",
+          "message", "%{IPORHOST:syslog_server}:%{INT:client_port:} \[%{HAPROXYDATE:accept_date}\] %{NOTSPACE:frontend_name} %{NOTSPACE:backend_name}/%{NOTSPACE:server_name} %{INT:time_queue:int}/%{INT:time_backend_connect:int}/%{NOTSPACE:time_duration:int} %{NOTSPACE:bytes_read:int} %{NOTSPACE:termination_state} %{INT:actconn:int}/%{INT:feconn:int}/%{INT:beconn:int}/%{INT:srvconn:int}/%{NOTSPACE:retries:int} %{INT:srv_queue:int}/%{INT:backend_queue:int}",
           "message", "%{SYSLOGTIMESTAMP:syslog_timestamp} %{IPORHOST:syslog_server} %{SYSLOGPROG}: %{GREEDYDATA:haproxy_message}"
         ]
         add_tag => [ "HAProxy" ]
@@ -27,7 +25,7 @@ filter {
         rename => [ "http_status_code", "response" ]
         rename => [ "http_request", "request" ]
         rename => [ "client_ip", "src_ip" ]
-#        replace => [ "message", "%{haproxy_message}" ]
+#       replace => [ "message", "%{haproxy_message}" ]
         replace => [ "host", "%{received_from}"]
       }
     }
