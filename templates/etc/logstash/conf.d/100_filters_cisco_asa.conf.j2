@@ -1,3 +1,4 @@
+{{ ansible_managed|comment }}
 # Cisco ASA
 filter {
   if "syslog" in [tags] and "pre-processed" not in [tags] {
