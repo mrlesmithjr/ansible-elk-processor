@@ -185,6 +185,10 @@ logstash_slack_channel: logstash
 logstash_slack_output_tags: []
   # - SSH_Failed_Login
 
+# Define the timezone you would like logs to parsed against
+# America/New_York, UTC, end etc.
+logstash_timezone: UTC
+
 powerdns_blacklists: []
   # - malware
   # - social_networking

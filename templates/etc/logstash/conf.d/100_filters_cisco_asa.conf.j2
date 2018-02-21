@@ -55,7 +55,7 @@ filter {
       }
       date {
         match => [ "timestamp", "MMM dd HH:mm:ss", "MMM d HH:mm:ss", "MMM dd yyyy HH:mm:ss", "MMM d yyyy HH:mm:ss", "MMM  d HH:mm:ss" ]
-        timezone => "America/New_York"
+        timezone => "{{ logstash_timezone }}"
       }
       mutate {
         replace => [ "host", "%{sysloghost}" ]
